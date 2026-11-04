@@ -1,0 +1,30 @@
+# ---------- 构建产物 ----------
+firmware/OBJ/
+firmware/LIST/
+
+# ---------- IDE 本地状态 ----------
+# .vscode 下的 launch.json、tasks.json 是共用调试配置，需要入库，故不忽略整个目录
+.vscode/*.log
+.vscode/ipch/
+
+# ---------- 工具生成的索引缓存 ----------
+.codegraph/
+
+# ---------- 厂商资料：整体不入库 ----------
+# 手册、SDK、DFP 压缩包、原理图/PCB 源文件都从厂商渠道获取
+docs/vendor/*
+
+# 例外（逐级放开上级目录，git 不允许在被忽略目录下直接包含文件）：
+#   器件包 .pack   —— 烧录与 F5 调试依赖
+#   SVD            —— 外设寄存器视图依赖
+!docs/vendor/HED/
+docs/vendor/HED/*
+!docs/vendor/HED/dfp/
+docs/vendor/HED/dfp/*
+!docs/vendor/HED/dfp/*.pack
+!docs/vendor/HED/dfp/svd/
+docs/vendor/HED/dfp/svd/*
+!docs/vendor/HED/dfp/svd/*.svd
+
+# ---------- 跨工程复用母本：不入库 ----------
+references/
