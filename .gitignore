@@ -6,9 +6,12 @@ firmware/LIST/
 # .vscode 下的 launch.json、tasks.json 是共用调试配置，需要入库，故不忽略整个目录
 .vscode/*.log
 .vscode/ipch/
+# 供语言服务器在工作区根发现的编译数据库副本（由 CMake 构建时同步）
+/compile_commands.json
 
 # ---------- 工具生成的索引缓存 ----------
 .codegraph/
+/.cache/
 
 # ---------- 厂商资料：整体不入库 ----------
 # 手册、SDK、DFP 压缩包、原理图/PCB 源文件都从厂商渠道获取

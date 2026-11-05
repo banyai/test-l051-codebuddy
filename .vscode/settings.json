@@ -1,0 +1,13 @@
+{
+    "clangd.enable": true,
+    "clangd.path": "C:/Espressif/tools/esp-clang/esp-19.1.2_20250312/esp-clang/bin/clangd.exe",
+    "clangd.arguments": [
+        "--query-driver=**",
+        "--background-index"
+    ],
+    "clangd.detectExtensionConflicts": false,
+    "files.associations": {
+        "*.c": "c",
+        "*.h": "c"
+    }
+}

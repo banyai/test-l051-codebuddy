@@ -1,4 +1,4 @@
-# CIU32L051 LITE-64 核心板闪灯工程
+# CIU32L051 LITE-64 核心板闪灯 + LCD 显示工程
 #
 # 构建命令固定从项目根执行：
 #   cmake -S firmware -B firmware/OBJ -G Ninja \
@@ -47,7 +47,10 @@ add_executable(firmware.elf
     USER/ciu32l051_it.c
 
     APP/app_blink.c
+    APP/app_display.c
 
+    HARDWARE/lcd.c
+    HARDWARE/lcd_segments.c
     HARDWARE/led.c
 
     SYSTEM/sys.c
@@ -57,6 +60,7 @@ add_executable(firmware.elf
     LIBRARIES/CIU32L051_StdPeriph/Source/ciu32l051_std.c
     LIBRARIES/CIU32L051_StdPeriph/Source/ciu32l051_std_flash.c
     LIBRARIES/CIU32L051_StdPeriph/Source/ciu32l051_std_gpio.c
+    LIBRARIES/CIU32L051_StdPeriph/Source/ciu32l051_std_lcd.c
     LIBRARIES/CIU32L051_StdPeriph/Source/ciu32l051_std_rcc.c
 
     LIBRARIES/ld/ciu32l051_flash.ld
@@ -88,6 +92,9 @@ set(SELF_SOURCES
     USER/main.c
     USER/ciu32l051_it.c
     APP/app_blink.c
+    APP/app_display.c
+    HARDWARE/lcd.c
+    HARDWARE/lcd_segments.c
     HARDWARE/led.c
     SYSTEM/sys.c
     SYSTEM/sch/sch.c
@@ -106,4 +113,8 @@ add_custom_command(TARGET firmware.elf POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -O ihex   $<TARGET_FILE:firmware.elf> ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/firmware.hex
     COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:firmware.elf> ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/firmware.bin
     COMMAND ${CMAKE_SIZE} $<TARGET_FILE:firmware.elf>
+    # clangd 默认只沿源文件父目录向上查找编译数据库，同步一份到工作区根
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_BINARY_DIR}/compile_commands.json
+            ${CMAKE_SOURCE_DIR}/../compile_commands.json
 )

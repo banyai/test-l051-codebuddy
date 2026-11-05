@@ -1,0 +1,27 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "CIU32L051 GCC ARM",
+            "compileCommands": "${workspaceFolder}/firmware/OBJ/compile_commands.json",
+            "compilerPath": "C:/Users/lisa/AppData/Local/stm32cube/bundles/gnu-tools-for-stm32/14.3.1+st.2/bin/arm-none-eabi-gcc.exe",
+            "intelliSenseMode": "gcc-arm",
+            "cStandard": "c11",
+            "includePath": [
+                "${workspaceFolder}/firmware/USER",
+                "${workspaceFolder}/firmware/APP",
+                "${workspaceFolder}/firmware/HARDWARE",
+                "${workspaceFolder}/firmware/SYSTEM",
+                "${workspaceFolder}/firmware/SYSTEM/sch",
+                "${workspaceFolder}/firmware/LIBRARIES/CMSIS/Core",
+                "${workspaceFolder}/firmware/LIBRARIES/CMSIS/Device",
+                "${workspaceFolder}/firmware/LIBRARIES/CIU32L051_StdPeriph/Include"
+            ],
+            "defines": [
+                "CIU32L051",
+                "SCH_PORT_CMSIS",
+                "SCH_TICK_MS=1"
+            ]
+        }
+    ]
+}
